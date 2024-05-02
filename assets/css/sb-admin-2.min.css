@@ -1714,6 +1714,25 @@ pre code {
 		border: 0;
 	}
 }
+.paid-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px; /* Adjust margin as needed */
+}
+
+.paid-round {
+    border-radius: 50%;
+    background-color: green; /* Change color as needed */
+    color: white;
+    padding: 5px 10px;
+}
+.un_paid-round {
+    border-radius: 50%;
+    background-color: red; /* Change color as needed */
+    color: white;
+    padding: 5px 10px;
+}
+
 .table-responsive {
 	display: block;
 	width: 100%;

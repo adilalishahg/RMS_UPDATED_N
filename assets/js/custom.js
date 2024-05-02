@@ -848,26 +848,32 @@ function view_invoice(id){
 		let rentJson = data1.rent_data
 		let userJson = data1.user_data 
 		let total_rent = (data1.total_rent)
+		let pay_st= data1.total_rent.paid=='yes'?`<div class="paid-round">Paid</div>`:`<div class="un_paid-round">Payment Pending</div>`
 		let response ='';
 		console.log(flatJson);
 		console.log(rentJson);
 		console.log(userJson);
 		console.log(total_rent);
-		const invoiceDetailsHTML = `
-			<div class="card shadow mb-4 w-100"> 
-				<div class="card-body">
-					<p><strong>Customer Name:</strong> [${userJson.first_name +' '+userJson.last_name }]</p>
-					<p><strong>Booking Date:</strong> [${rentJson.created_at}]</p>
-					<p><strong>Check-out Date:</strong> [${rentJson.check_out_date}]</p>
-					<p><strong>Rent:</strong> [${rentJson.rent_collected}]</p>
-					<p><strong>Bills:</strong> [${rentJson.utility_bill}]</p>
-					<p><strong>Service Charges:</strong> [${rentJson.utility_bill}]</p>
-					<p><strong>Total Charges:</strong> [${rentJson.total_rent}]</p>
-					<p><strong>Flat Name:</strong> [${flatJson.flat_name}]</p>
-					<p><strong>Flat Type:</strong> [${flatJson.flat_name}]</p>
-					<p><strong>Customer Email:</strong> [${userJson.email}]</p>
-				</div>
-			</div>`;
+		const invoiceDetailsHTML = `<div class="card shadow mb-4 w-100"> 
+		<div class="card-body">
+			<p><strong>Customer Name:</strong> [${userJson.first_name +' '+userJson.last_name }]</p>
+			<p><strong>Booking Date:</strong> [${rentJson.created_at}]</p>
+			<p><strong>Check-out Date:</strong> [${rentJson.check_out_date}]</p>
+			<p><strong>Rent:</strong> [${rentJson.rent_collected}]</p>
+			<p><strong>Bills:</strong> [${rentJson.utility_bill}]</p>
+			<p><strong>Service Charges:</strong> [${rentJson.expense}]</p>
+			<p><strong>Total Charges:</strong> [${rentJson.total_rent}]</p>
+			<p><strong>Flat Name:</strong> [${flatJson.flat_name}]</p>
+			<p><strong>Flat Type:</strong> [${flatJson.status==1?'Luxury':'Simple'}]</p>
+			<p><strong>Customer Email:</strong> [${userJson.email}]</p>
+		</div>
+		<div class="paid-container">
+			<div class="paid-round">
+				Paid
+			</div>
+		</div>
+	</div>
+	`;
 
 		// $(".user_dash").html("");
 		// get_towers_ajax(data1);
