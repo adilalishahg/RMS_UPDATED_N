@@ -497,7 +497,17 @@ function loadModule(val) {
 			if(worker_type.length ===0 ){
 				rows += '<tr><td colspan="3">No Data Found</td></tr>';
 			}else{
-				worker_type.forEach((user, index) => { 
+				worker_type.forEach((user, index) => {
+					let deleteButton  = ''
+					console.log(user.worker_type_id)
+					if(user.worker_type!=='sweeper'&&user.worker_type!=='watchman'){
+						deleteButton = `<a class='btn btn-danger'  onclick="delete_employee_type(` +
+						user.worker_type_id +
+						`)">Delete</a></td> ` +
+						`</tr>`
+					}
+					console.log(deleteButton)
+					  
 					rows +=
 						`<tr>` +
 						`<td>` +
@@ -511,10 +521,7 @@ function loadModule(val) {
 						`</td> `  +
 						`<td><a class='btn btn-info'  onclick="edit_employee_type(` +
 						user.worker_type_id +
-						`)">Edit</a> <a class='btn btn-danger'  onclick="delete_employee_type(` +
-						user.worker_type_id +
-						`)">Delete</a></td> ` +
-						`</tr>`;
+						`)">Edit</a> ${deleteButton}`;
 					// console.log(user)
 				}); 
 			}
