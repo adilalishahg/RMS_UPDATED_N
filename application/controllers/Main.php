@@ -189,7 +189,8 @@ class Main extends MY_Controller
 			// exit;
 			$data['total_flats']=$data['booked_flats'] =0;
 			$data['total_flats_data_mine'] = $this->Db_Model->get_data(TBL_FLAT, $where_flats, '', '', $type = 1, $select = 'count(flat_id) as total_flats')[0];
-			$data['total_tower_data_mine'] = $this->Db_Model->get_data(TBL_TOWER, '', '', '', $type = 1, $select = 'count(id) as total_towers')[0];
+			$data['total_tower_data'] = $this->Db_Model->get_data(TBL_TOWER, '', '', '', $type = 1, $select = 'count(id) as total_towers')[0];
+			$data['total_tower_data_mine'] = $this->Db_Model->get_data(TBL_TOWER, $where_flats, '', '', $type = 1, $select = 'count(id) as total_towers')[0]['total_towers'];
 			// if(!empty($data['total_flats_data'])){
 			// 	$data['total_flats_data'] = $data['total_flats_data'][0]['total_flats'];
 

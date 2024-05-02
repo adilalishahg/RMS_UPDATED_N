@@ -4,7 +4,8 @@ Chart.defaults.global.defaultFontColor = '#858796';
 var dataItem =  localStorage.getItem('dashboard_data')
 var dataJSON = JSON.parse(dataItem) 
 console.log(dataJSON)
-var values = [dataJSON.total_flats_mine,dataJSON.total_flats_mine,dataJSON.total_tower_data_mine]
+var values = [dataJSON.total_flats_mine,dataJSON.total_mine_booked_flats,dataJSON.total_tower_data_mine]
+var labels1 = ["My Total Flats", "My Booked Flats", "My Total Towers"]
 var values2 = [dataJSON.get_current_month_rent_total_mine ,dataJSON.get_current_year_rent_total_mine ,dataJSON.get_current_month_expense_total_mine ,dataJSON.get_current_year_expense_total_mine ]
 var labels2 = ["My Flats Month Earning","My Flats Year Earning","Current Month Expense","Current Year Expense"]
 // console.log(values)
@@ -14,7 +15,7 @@ var ctx2 = document.getElementById("myPieChart2");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["My Booked Flats", "My Total Flats", "My Total Towers"],
+    labels: labels1,
     datasets: [{
       data: values,
       backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
