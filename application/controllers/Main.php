@@ -141,13 +141,23 @@ class Main extends MY_Controller
 			$data['booked__all_user_flats'] = count($booked__all_user_flats); 
 			$data['get_current_month_rent_total'] =  $this->Db_Model->get_current_month_rent_total(); 
 			$data['get_current_year_rent_total'] =  $this->Db_Model->get_current_year_rent_total(); 
-			$data['get_current_year_rent_total_mine'] =  $this->Db_Model->get_current_year_rent_total($_SESSION['user_id']); 
-			$data['get_current_month_rent_total_mine'] =  $this->Db_Model->get_current_month_rent_total($_SESSION['user_id']) ; 
+			$data['get_current_year_rent_total_mine'] =  $this->Db_Model->get_current_user_year_rent_total($_SESSION['user_id']); 
+			$data['get_current_month_rent_total_mine'] =  $this->Db_Model->get_current_user_month_rent_total($_SESSION['user_id']) ; 
 			$data['get_current_month_expense_total'] =  $this->Db_Model->get_current_month_expense_total(); 
 			$data['get_current_year_expense_total'] =  $this->Db_Model->get_current_year_expense_total(); 
-			$data['get_current_year_expense_total_mine'] =  $this->Db_Model->get_current_year_expense_total($_SESSION['user_id']); 
-			$data['get_current_month_expense_total_mine'] =  $this->Db_Model->get_current_month_expense_total($_SESSION['user_id']) ; 
+			$data['get_current_year_expense_total_mine'] =  $this->Db_Model->get_current_user_year_expense_total($_SESSION['user_id']); 
+			$data['get_current_month_expense_total_mine'] =  $this->Db_Model->get_current_user_month_expense_total($_SESSION['user_id']) ; 
 			// Calculate the date one month ago
+			$data['total_mine_booked_flats']=$data['total_mine_booked_flats']?$data['total_mine_booked_flats']:0;
+			$data['booked__all_user_flats']=$data['booked__all_user_flats']?$data['booked__all_user_flats']:0;
+			$data['get_current_month_rent_total']=$data['get_current_month_rent_total']?$data['get_current_month_rent_total']:0;
+			$data['get_current_year_rent_total']=$data['get_current_year_rent_total']?$data['get_current_year_rent_total']:0;
+			$data['get_current_year_rent_total_mine']=$data['get_current_year_rent_total_mine']?$data['get_current_year_rent_total_mine']:0;
+			$data['get_current_month_rent_total_mine']=$data['get_current_month_rent_total_mine']?$data['get_current_month_rent_total_mine']:0;
+			$data['get_current_month_expense_total']=$data['get_current_month_expense_total']?$data['get_current_month_expense_total']:0;
+			$data['get_current_year_expense_total']=$data['get_current_year_expense_total']?$data['get_current_year_expense_total']:0;
+			$data['get_current_month_expense_total_mine']=$data['get_current_month_expense_total_mine']?$data['get_current_month_expense_total_mine']:0;
+			$data['get_current_year_expense_total_mine']=$data['get_current_year_expense_total_mine']?$data['get_current_year_expense_total_mine']:0;
 			$oneMonthAgo = date('Y-m-d', strtotime('-1 month', strtotime($currentDate)));
 			$where = `'created_at >=', "DATE_SUB(NOW(), INTERVAL 1 MONTH)"`;
 			// $data['total'] = $this->Db_Model->get_data(TBL_RENT, $where, '', '', $type = 1, $select = 'sum(amount) as total')[0]['total'];

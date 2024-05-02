@@ -90,6 +90,31 @@ class Db_Model extends CI_Model
 		// Return the result
 		return $query->row()->total_rent;
 	}
+	public function get_current_user_month_rent_total($user='') {
+		// Get the current month and year
+		$current_month = date('m');
+		$current_year = date('Y');
+	
+		// Build the query
+		$this->db->select_sum(TBL_RENT.'.total_rent');
+		$this->db->from(TBL_RENT);
+		$this->db->join(TBL_FLAT, TBL_RENT.'.flat_id = '.TBL_FLAT.'.flat_id');
+		$this->db->join(TBL_USER, TBL_USER.'.user_id = '.TBL_FLAT.'.owner_id');
+		 
+			
+			$this->db->where(TBL_USER.".user_id =", $user);
+		 
+		$this->db->where("DATE_FORMAT(".TBL_RENT.".check_out_date, '%m') =", $current_month);
+		$this->db->where("DATE_FORMAT(".TBL_RENT.".check_out_date, '%Y') =", $current_year);
+	
+		// Execute the query
+		$query = $this->db->get();
+		// if($user==''){
+		// echo $this->db->last_query();
+		// exit;
+		// Return the result
+		return $query->row()->total_rent;
+	}
 	public function get_current_month_expense_total($user='') {
 		// Get the current month and year
 		$current_month = date('m');
@@ -104,6 +129,30 @@ class Db_Model extends CI_Model
 			
 			$this->db->where(TBL_USER.".user_id =", $user);
 		}
+		$this->db->where("DATE_FORMAT(".TBL_RENT.".check_out_date, '%m') =", $current_month);
+		$this->db->where("DATE_FORMAT(".TBL_RENT.".check_out_date, '%Y') =", $current_year);
+	
+		// Execute the query
+		$query = $this->db->get();
+		// if($user==''){
+		// echo $this->db->last_query(); }
+		// Return the result
+		return $query->row()->expense;
+	}
+	public function get_current_user_month_expense_total($user='') {
+		// Get the current month and year
+		$current_month = date('m');
+		$current_year = date('Y');
+	
+		// Build the query
+		$this->db->select_sum(TBL_RENT.'.expense');
+		$this->db->from(TBL_RENT);
+		$this->db->join(TBL_FLAT, TBL_RENT.'.flat_id = '.TBL_FLAT.'.flat_id');
+		$this->db->join(TBL_USER, TBL_USER.'.user_id = '.TBL_FLAT.'.owner_id');
+		 
+			
+			$this->db->where(TBL_USER.".user_id =", $user);
+		 
 		$this->db->where("DATE_FORMAT(".TBL_RENT.".check_out_date, '%m') =", $current_month);
 		$this->db->where("DATE_FORMAT(".TBL_RENT.".check_out_date, '%Y') =", $current_year);
 	
@@ -137,6 +186,28 @@ class Db_Model extends CI_Model
 		// Return the result
 		return $query->row()->total_rent;
 	}
+	public function get_current_user_year_rent_total($user='') {
+		// Get the current month and year
+		$current_month = date('m');
+		$current_year = date('Y');
+	
+		// Build the query
+		$this->db->select_sum(TBL_RENT.'.total_rent');
+		$this->db->from(TBL_RENT);
+		$this->db->join(TBL_FLAT, TBL_RENT.'.flat_id = '.TBL_FLAT.'.flat_id');
+		$this->db->join(TBL_USER, TBL_USER.'.user_id = '.TBL_FLAT.'.owner_id');
+		 
+			$this->db->where(TBL_USER.".user_id =", $user);
+		 
+		// $this->db->where("DATE_FORMAT(".TBL_RENT.".check_out_date, '%m') =", $current_month);
+		$this->db->where("DATE_FORMAT(".TBL_RENT.".check_out_date, '%Y') =", $current_year);
+	
+		// Execute the query
+		$query = $this->db->get();
+		
+		// Return the result
+		return $query->row()->total_rent;
+	}
 	public function get_current_year_expense_total($user='') {
 		// Get the current month and year
 		$current_month = date('m');
@@ -151,6 +222,28 @@ class Db_Model extends CI_Model
 			
 			$this->db->where(TBL_USER.".user_id =", $user);
 		}
+		// $this->db->where("DATE_FORMAT(".TBL_RENT.".check_out_date, '%m') =", $current_month);
+		$this->db->where("DATE_FORMAT(".TBL_RENT.".check_out_date, '%Y') =", $current_year);
+	
+		// Execute the query
+		$query = $this->db->get();
+		
+		// Return the result
+		return $query->row()->expense;
+	}
+	public function get_current_user_year_expense_total($user='') {
+		// Get the current month and year
+		$current_month = date('m');
+		$current_year = date('Y');
+	
+		// Build the query
+		$this->db->select_sum(TBL_RENT.'.expense');
+		$this->db->from(TBL_RENT);
+		$this->db->join(TBL_FLAT, TBL_RENT.'.flat_id = '.TBL_FLAT.'.flat_id');
+		$this->db->join(TBL_USER, TBL_USER.'.user_id = '.TBL_FLAT.'.owner_id');
+		 
+			$this->db->where(TBL_USER.".user_id =", $user);
+	 
 		// $this->db->where("DATE_FORMAT(".TBL_RENT.".check_out_date, '%m') =", $current_month);
 		$this->db->where("DATE_FORMAT(".TBL_RENT.".check_out_date, '%Y') =", $current_year);
 	
