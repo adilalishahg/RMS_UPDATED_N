@@ -367,9 +367,12 @@ function loadModule(val) {
 			headingElement.textContent = "Employees List";
 			var { users } = data;
 			let rows = "";
+			console.log(users);
 			users.forEach((user, index) => {
 				// owner_options +=
 				// 	`<option value="${user.user_id}">${user.first_name} ${user.last_name} </option>`
+				console.log(user.type);
+				
 				var role_user = employee_type(user.type);
 				
 				console.log("UserCheck"+role_user+user.type);
