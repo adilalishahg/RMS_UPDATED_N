@@ -99,14 +99,25 @@ class MY_Controller extends CI_Controller
 
 				if ($user_id) {
 
-					$this->load->library('session');
-					$this->session->set_userdata('user_id', $user_id);
-					$this->session->set_userdata('first_name', $first_name);
-					$this->session->set_userdata('last_name', $last_name);
-					$this->session->set_userdata('email', $email);
-					$this->session->set_userdata('role', $role);
+					// $this->load->library('session');
+					// $this->session->set_userdata('user_id', $user_id);
+					// $this->session->set_userdata('first_name', $first_name);
+					// $this->session->set_userdata('last_name', $last_name);
+					// $this->session->set_userdata('email', $email);
+					// $this->session->set_userdata('role', $role); 
+					echo '<script>alert("Registered Successfully,Please Login");						 
+								window.location.href = "login?success=1";
+							
+						</script>';
+					exit;
 					// print_r($_SESSION);
-					redirect('main');
+					// redirect('main');
+				}else{
+					echo '<script>alert("Registration failed,Please Try Again");						 
+								window.location.href = "register";
+							
+						</script>';
+					exit;
 				}
 				// print_r($user_id);
 				// exit;

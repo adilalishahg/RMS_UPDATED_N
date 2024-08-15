@@ -371,6 +371,8 @@ function loadModule(val) {
 				// owner_options +=
 				// 	`<option value="${user.user_id}">${user.first_name} ${user.last_name} </option>`
 				var role_user = employee_type(user.type);
+				
+				console.log("UserCheck"+role_user+user.type);
 				rows +=
 					`<tr>` +
 					`<td>` +
@@ -530,7 +532,7 @@ function loadModule(val) {
 			class="fas fa-download fa-sm text-white-50" style ></i> Add Worker Type</a> `
 			// Insert the button after the heading using its ID
 			$('#route_heading_div').after(button); 
-			show_employees_type(rows);
+			show_employees_type_new(rows);
 		} else if (val == "book_flat_ajax") {
 			flatEl.textContent = "Book Flat From Given";
 			book_flat_ajax(data);
@@ -548,6 +550,54 @@ function loadModule(val) {
 			// $('#tower_div').html(select_tower)
 			// console.log(select_owner)
 		}
+	});
+}
+
+function show_employees_type_new(rows) {
+	var response =
+		`<div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Employees </h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Worker</th>
+                                            <th>Salary</th> 
+                                            <th>option</th>
+                                             
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Worker</th>
+                                            <th>Salary</th> 
+                                            <th>option</th>
+                                             
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                       ` +
+		rows +
+		`
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> `;
+	$(".user_dash").html("");
+	$(".user_dash").html(response);
+
+	// Initialize DataTable after adding the HTML to the DOM
+	$(document).ready(function () {
+		$("#dataTable").DataTable();
 	});
 }
 function add_empty_message_classes() {
